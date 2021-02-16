@@ -7,8 +7,6 @@ import ItemInCart from './simpleCart';
         return (
           <header>
               < ItemInCart />
-
-      Browse Our Categories
         </header>
         
           )
