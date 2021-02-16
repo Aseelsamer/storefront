@@ -6,7 +6,6 @@ import Status from './components/Products'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AppBar,Typography,Toolbar} from '@material-ui/core/';
-import cardsSccs from './scss/cardsScss';
 
 
 
@@ -22,11 +21,11 @@ function App() {
   </Toolbar>
 </AppBar>
 
+   
 
    <Header/>
    <Categories/>
    <Status/>
-   <cardsSccs/>
    <Footer/>
 
 
