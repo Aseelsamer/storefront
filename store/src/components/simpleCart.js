@@ -31,9 +31,9 @@ const ItemInCart = props => {
                 ))}
             </Menu>
             
+
+
         </>
-
-
     )
 }
 
@@ -42,7 +42,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+
     put: (obj) => dispatch(updateInstockIncrement(obj)),
+
+    put: (obj) => dispatch(actions.updateInstockIncrement(obj)),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemInCart)

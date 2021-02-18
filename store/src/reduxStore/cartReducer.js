@@ -1,3 +1,4 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 import superagent from "superagent";
 
@@ -40,7 +41,6 @@ export const updateInstockIncrement=(obj)=>(dispatch)=>{
   return superagent.put(`${api}/products/${obj._id}`).set('Content-Type', 'application/json').send(newObj).then(data=>{
       dispatch(deleteProduct(data.body));
   });
-}
 export const { addProduct, deleteProduct } = cart.actions;
 
 export default cart.reducer;

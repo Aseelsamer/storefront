@@ -1,22 +1,4 @@
-// import React from 'react';
-// // import {Link, NavLink} from 'react-router-dom';
-// import ItemInCart from './simpleCart';
 
-//  class Header extends React.Component{
-//      render(){
-//         return (
-//           <header>
-//               < ItemInCart />
-
-//       Browse Our Categories
-//         </header>
-        
-//           )
-//      }
-//  }
-
-
-// export default Header;
 
 import React from 'react';
 import { Tabs,AppBar } from '@material-ui/core'
@@ -26,6 +8,7 @@ import ItemInCart from './simpleCart'
 class Header extends React.Component {
     render() {
         return (
+
             <header>
 
                 <AppBar position="static" style={{ background: '#2E3B55' }}>
@@ -42,6 +25,14 @@ class Header extends React.Component {
         )
     }
 }
+
+          <header>
+              < ItemInCart />
+        </header>
+        
+          )
+     }
+ }
 
 
 export default Header;
