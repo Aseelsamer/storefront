@@ -1,7 +1,5 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import superagent from "superagent";
-
 const api = 'https://api-js401.herokuapp.com/api/v1';
 const cart = createSlice({
   name: "cart",
@@ -41,6 +39,7 @@ export const updateInstockIncrement=(obj)=>(dispatch)=>{
   return superagent.put(`${api}/products/${obj._id}`).set('Content-Type', 'application/json').send(newObj).then(data=>{
       dispatch(deleteProduct(data.body));
   });
+}
 export const { addProduct, deleteProduct } = cart.actions;
 
 export default cart.reducer;

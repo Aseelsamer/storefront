@@ -1,3 +1,4 @@
+
 import React,{useEffect}from 'react';
 import {connect} from 'react-redux';
 import {active} from '../reduxStore/categoriesReducer';
@@ -31,14 +32,21 @@ const ActiveCategories = props => {
 
 
         </>
+
     )
 }
 
 const mapStateToProps = state => ({
-    activeOne: state.categories
+
+    active:state.categories.ActiveCategories,
+    activeOne : state.categories
 });
+
 const mapDispatchToProps = (dispatch, getState,string) => ({
-    getcat: () => dispatch(actions.getRemoteCategories()),
-    active: (string)=>dispatch(active(string))
-})
+    active: (string)=>dispatch(active(string)),
+    activeProduct: (string)=>dispatch(activeProduct(string))
+
+});
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(ActiveCategories)
