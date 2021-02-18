@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import superagent from "superagent";
-
 const api = 'https://api-js401.herokuapp.com/api/v1';
 const cart = createSlice({
   name: "cart",

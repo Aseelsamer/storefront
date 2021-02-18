@@ -1,13 +1,25 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {active} from '../reduxStore/categoriesReducer';
+import React, { useEffect } from 'react';
+import {connect, useDispatch} from 'react-redux';
+// import {active} from '../reduxStore/categoriesReducer';
+import {  active, getRemoteCategories} from '../rtkStore/categorySlicer';
+import { Link, Typography,Button } from '@material-ui/core';
+import {activeProduct} from '../rtkStore/productSlicer';
 
-const activeCategories = props => {
+const ActiveCategories = props => {
+    const dispatch = useDispatch();
+    
+    useEffect(()=>{
+        const fetchData=async() =>{
+            await dispatch(getRemoteCategories())
+        };
+        fetchData();
+    },[dispatch])
+
     return (
         <section>
             <ul>
                 {props.activeOne.categories.map((category, idx)=> {
-                    return <li key={idx} onClick={()=> props.active(category.name)}>{category.display_name}</li>
+                     return <Button onClick={()=>{props.activeProduct(category.name)}}><Link style={{borderLeft:"solid #2E3B55 4px",color:"#2E3B55" ,padding:"2px",magginRight:"25px"}} key={idx} value={category.name} onClick={()=>props.active(category.name)} href="#">{category.name.toUpperCase()} </Link></Button>
                 })}
             </ul>
         
@@ -16,9 +28,12 @@ const activeCategories = props => {
 }
 
 const mapStateToProps = state => ({
+    active:state.categories.ActiveCategories,
     activeOne : state.categories
 });
 
-const mapDispatchToProps = {active}
-
-export default connect(mapStateToProps, mapDispatchToProps)(activeCategories)
+const mapDispatchToProps = (dispatch, getState,string) => ({
+    active: (string)=>dispatch(active(string)),
+    activeProduct: (string)=>dispatch(activeProduct(string))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveCategories)

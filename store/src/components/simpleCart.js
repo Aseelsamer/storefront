@@ -1,34 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Tab, AppBar, Tabs, Typography } from '@material-ui/core'
+import {Link} from 'react-router-dom';
+import ListItem from "@material-ui/core/ListItem";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import {updateInstockIncrement} from '../rtkStore/cartSlicer';
+import Button from '@material-ui/core/Button';
 
-
+function ListItemLink(props) {
+    return <ListItem button component="a" {...props} />;
+}
 
 const ItemInCart = props => {
+    const [anchorEl, setAnchorEl] = React.useState(null)
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
     return (
         <>
-            <section>
-                    <div>   <Tab label="CART" CART />: {props.myCart.productsInCart.length}</div>
+               <Button label="CART"  onClick={handleClick} />: {props.myCart.productsInCart.length}<Button/>
                   
-                    <div>
-                    <ul>
-                        {props.myCart.productsInCart.map((item, idx) => {
-                            console.log('----item in simple cart-----', item)
-                            return <li key={idx} >{item.name} </li>
-                        })}
-                    </ul>
+                    <Menu>
+                {props.myCart.productsInCart.map((item) => (
+                    <ListItemLink href="#simple-list">
+                        <MenuItem ><Link to='/checkout'>{item.name}</Link></MenuItem>
+                        <DeleteIcon onClick={() => props.put(item)}/>
 
-                    </div>
-            </section>
+                    </ListItemLink>
+                ))}
+            </Menu>
+            
         </>
 
 
     )
 }
+
 const mapStateToProps = state => ({
     myCart: state.cart
 });
 
+const mapDispatchToProps = (dispatch) => ({
+    put: (obj) => dispatch(updateInstockIncrement(obj)),
+});
 
-
-export default connect(mapStateToProps)(ItemInCart)
+export default connect(mapStateToProps, mapDispatchToProps)(ItemInCart)
